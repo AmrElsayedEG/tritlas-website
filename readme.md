@@ -1,6 +1,6 @@
 ## TriTlas ![Django](https://img.shields.io/badge/Django-2.2.9-yellow.svg) ![Django](https://img.shields.io/badge/DRF-3.12.1-green.svg)
 
-
+![Algorithm schema](./logo/logo.png)
 ## Table of contents
 * [General info](#general-info)
 * [Technologies](#technologies)
