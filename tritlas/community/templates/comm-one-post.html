@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} TriTlas {% endblock %}
+{% block content %}
+
+
+        <section class="header-place">
+            <div class="container">
+
+               <div class="row text-center">
+                    {% if user.is_authenticated %}
+                    <h2 style="color:white">مرحباً بك {{user.username}}</h2>
+                    <a href="/community/logout" class="btn btn-danger">تسجيل الخروج</a>
+                    <a href="/community/new" class="btn btn-success" style="font-size: 20px;">أضف مشاركة</a>
+                    {% else %}
+                   <h2 style="color:white">أنضم الآن للمجتمع الخاص بنا</h2>
+                    <a href="/community/signup" class="btn btn-success">إنشاء حساب</a>
+                    <a href="/community/login" class="btn btn-primary">تسجيل الدخول</a>
+                    {% endif %}
+                    <!-- logout -->
+                    <!--
+
+-->
+                </div>
+            </div>
+        </section>
+{% if ad %}
+<section class="trips-ads text-center">
+    <div class="container">
+        <div class="card">
+  <div class="card-body">
+    <h5 class="card-title">رحلة مميزة إلى {{ad.trip_ad.destination}}</h5>
+    <p class="card-text">أقضي {{ad.trip_ad.nights}} ليال رائعة فقط وبسعر {{ad.trip_ad.price}} جنية</p>
+    <a href="/trips/{{ad.trip_ad.id}}" class="btn btn-primary">أعرف المزيد <span class="glyphicon glyphicon-play-circle"></span></a>
+  </div>
+</div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+       <section class="comm-posts">
+            <div class="container">
+                <div class="row">
+                    <div class="places-box col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12" style="background-color: #fff">
+                        
+                        <div class="row" style="margin:1%">
+                            <img style="border-radius:50%;width: 50px;height: 50px" src="{% if o_post.user.image %}{{o_post.user.image.url}}{% endif %}">
+                            <a href="/community/profile/{{o_post.user.id}}-user" style="text-decoration: none;"> <font size="5px">{{o_post.user}}</font></a>
+                            <font size="2px"> - {{o_post.date}}</font>
+                        </div>
+                        <div class="row" style="margin:1%">
+                            <p>{{o_post.message}}</p>
+                        </div>
+                        <div class="row text-center" style="margin:1%">
+                            <img class="img-responsive" src="{{o_post.image.url}}" style="width:70%">
+                        </div>
+                    </div>
+                   
+                </div>
+                
+                <section class="ads">
+            
+                <div class="row">
+                    <div class="col-lg-6 col-lg-offset-3">
+                        <a href="/contact"><img class="img-responsive" src="{% static 'img/ad-728-90.png' %}"/></a>
+                        </div>
+                    </div>
+        </section>
+                
+                
+                <div class="comments">
+                   <div class="row text-center">
+                       {% if can_delete %}<button class="btn btn-danger" type="button" data-toggle="modal" data-target="#exampleModal2">أحذف المنشور</button>{% endif %}
+                       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  أضف تعليق
+</button>
+
+                       <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">أضف تعليق</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        {% if user.is_authenticated %}
+        <form method="post">
+      <div class="modal-body">
+          {%csrf_token %}
+            {{form}}
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">إغلاف</button>
+        <button type="submit" class="btn btn-primary">أضف تعليق الآن</button>
+      </div>
+             </form>
+        {% else %}
+        <div class="modal-body">
+          قم بتسجيل الدخول أو إنشاء حساب جديد اولاً
+
+      </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">إغلاف</button>
+        <a href="/community/login" class="btn btn-primary">تسجيل الدخول</a>
+      </div>
+        {% endif %}
+    </div>
+  </div>
+</div>
+
+
+                   </div>
+                        <div class="row text-center">
+                            <h3>التعليقات</h3>
+                       </div>
+                        <div class="places-box col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12" style="background-color: #fff">
+                            {% for all_comments in all_comments %}
+                            <div class="new-comment">
+                                <div class="row">
+                                    <img style="border-radius:50%;width: 50px;height: 50px" src="{% if all_comments.user.image %}{{all_comments.user.image.url}}{% endif %}">
+                                    <a href="/community/profile/{{all_comments.user.id}}-user" style="text-decoration: none;"><font size="5px">{{all_comments.user}}</font></a>
+                                    <font size="2px"> - {{all_comments.date}}</font>
+                                </div>
+                                <div class="row">
+                                    <p>{{all_comments.comment}}</p>
+                                </div>
+                                </div>
+                            
+                                    <div class="row">
+                <div class="about-border justify-content-lg-center"></div>
+                </div>
+                            {% endfor %}
+
+                        
+                    </div>
+                    
+            </div>
+        </section>
+           
+   
+
+ <!-- Modal delete -->
+                   <form method="post">
+                       {% csrf_token %}
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">حذف الرحلة</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        هل متأكد من حذف المنشور؟
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">غلق</button>
+
+        <button class="btn btn-danger" type="submit" name="delete_this">حذف الآن</button>
+
+      </div>
+    </div>
+  </div>
+</div></form>
+        
+        
+        {% endblock %}

@@ -1,0 +1,322 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} TriTlas {% endblock %}
+{% block content %}
+        {% if not trips.published %}
+<meta http-equiv = "refresh" content = "0; url = /dsadasdsadas" />
+{% else %}
+        <!-- slider -->
+
+        <section class="header-place" style="clip-path: circle(587px at center center);">
+            <div class="container">
+                <div class="row text-center" style="position: relative;left: 1em;">
+                            <h1 style="font-size: 50px;color:#bce4f5">TriTlas</h1>
+                        <h2 class="text-center" style="color:white">تنوية: جميع الرحلات المعروضة هي ملك لمنظميها فقط ولا دخل لنا بها</h2>
+
+                </div>
+            </div>
+        </section>
+        
+       
+       <section class="slider-place">
+           <div class="container">
+               <div class="row text-center">
+                    {% if author %}
+                    <form method="get">
+                        {% if trips.active %}
+                        <button class="btn btn-warning" type="submit" name="stop">إيقاف تفعيل الرحلة</button>
+                        {% else %}
+                        <button class="btn btn-success" type="submit" name="ret">إعادة تفعيل الرحلة</button>
+                        {% endif %}
+                    </form>
+
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">حذف الرحلة</button>
+
+
+
+
+                   {% endif %}
+               </div>
+               <div class="row text-center">
+                   {% if not trips.active %}
+                   <div class="card"><h1>تم إكتمال العدد في هذه الرحلة</h1></div>
+                   {% endif %}
+               </div>
+               <div class"row">
+                    <div class="text-center">
+                        <h1>الصور</h1>
+                        
+                    </div>
+                </div>
+               <div class="row">
+                <div class="about-border justify-content-lg-center"></div>
+                </div>
+               
+             
+
+<div class="col-lg-4 col-md-4 col-sm-4" style="margin-bottom: 3%;">
+<img id="myImg" src="{{imgs.0.url}}" alt="Not Found" style="width:100%;height:350px">
+</div>
+<div class="col-lg-4 col-md-4 col-sm-4" style="margin-bottom: 3%;">
+<img id="myImg1" src="{{imgs.1.url}}" alt="Not Found" style="width:100%;height:350px">
+</div>
+<div class="col-lg-4 col-md-4 col-sm-4" style="margin-bottom: 3%;">
+<img id="myImg2" src="{{imgs.2.url}}" alt="Not Found" style="width:100%;height:350px">
+</div>
+<!-- The Modal -->
+           <div class="img-cont-modal">
+<div id="myModal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="img01">
+  <div id="caption"></div>
+</div>
+</div>
+<script>
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img = document.getElementById("myImg");
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+img.onclick = function(){
+  modal.style.display = "block";
+  modalImg.src = this.src;
+}
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+////////////////////////////////////////
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img = document.getElementById("myImg1");
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+img.onclick = function(){
+  modal.style.display = "block";
+  modalImg.src = this.src;
+}
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+//////////////////////////////////////////////////
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img = document.getElementById("myImg2");
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+img.onclick = function(){
+  modal.style.display = "block";
+  modalImg.src = this.src;
+}
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+</script>
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+
+#myImg,#myImg1,#myImg2 {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg:hover,#myImg1:hover,#myImg2:hover {opacity: 0.7;}
+
+/* The Modal (background) */
+.img-cont-modal .modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+
+/* Caption of Modal Image */
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+
+/* Add Animation */
+.modal-content, #caption {
+  -webkit-animation-name: zoom;
+  -webkit-animation-duration: 0.6s;
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+  from {-webkit-transform:scale(0)}
+  to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+  from {transform:scale(0)}
+  to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: red;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+  opacity: 1;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+  .modal-content {
+    width: 100%;
+  }
+}
+</style>
+
+  </section>      
+    <section class="info-place">
+        <div class="container">
+            <div class"row">
+                
+                    <div class="text-center">
+                        <h1>بيانات الرحلة</h1>
+                        
+                    </div>
+                </div>
+               <div class="row">
+                <div class="about-border justify-content-lg-center"></div>
+                </div>
+        <div class="row text-center">
+            <div class="col-lg-6 col-md-4">
+                <p>مشرف الرحلة : <a href="/community/profile/{{trips.user.id}}-user">{{trips.user}}</a></p>
+            <p>رقم هاتف مشرف الرحلة : {{trips.phone}}</p>
+            <p>نقطة الإنطلاق : {{trips.depart_location}}</p>
+            <p>تاريخ الإنطلاق : {{trips.date}}</p>
+            </div>
+            <div class="col-lg-6 col-md-4">
+            <p>ساعة الإنطلاق : {{trips.depart_time}}</p>
+            <p>الوجهة : {{trips.destination}}</p>
+            <p>مكان الإقامة : {{trips.place_of_residence}}</p>
+            <p>عدد الليالي : {{trips.nights}}</p>
+                </div>
+            <div class="col-lg-6 col-lg-offset-3 text-center col-md-4">
+                <p>السعر : {{trips.price}}</p>
+            </div>
+        </div>
+            <div class="row">
+                <div class="about-border justify-content-lg-center"></div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="ads">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-lg-6 col-lg-offset-4 col-md-6 col-md-offset-4">
+                        <a href=contact.html><img class="img-responsive" src="{% static 'img/ad-336-280.png' %}"/></a>
+                        </div>
+                </div>
+            </div>
+        </section>
+        
+        
+        <section class="details-trip">
+            <div class="container">
+                <div class="row">
+                    <div class="text-center">
+                        <h1>التفاصيل</h1>
+                        
+                    </div>
+                </div>
+                <div class="about-border justify-content-lg-center"></div>
+                <div class="row text-center">
+                    <p>{{trips.information}}</p>
+                </div>
+            </div>
+        </section>
+        <section class="pay-trip">
+            <div class="container">
+                <div class="row">
+                    <div class="text-center">
+                        <h1>الحجز والإستعلام</h1>
+                        
+                    </div>
+                </div>
+                <div class="about-border justify-content-lg-center"></div>
+                <div class="row text-center">
+                    <p>
+                        {{trips.contact_and_reservation_info}}
+                    </p>
+                </div>
+                <div class="about-border justify-content-lg-center"></div>
+            </div>
+        </section>
+{% endif %}
+  <!-- Modal delete -->
+                   <form method="get">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">حذف الرحلة</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        هل متأكد من حذف الرحلة؟
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">غلق</button>
+
+        <button class="btn btn-danger" type="submit" name="del">حذف الرحلة</button>
+
+      </div>
+    </div>
+  </div>
+</div></form>
+{% endblock %}

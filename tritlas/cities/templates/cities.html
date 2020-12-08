@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load index %}
+{% load markdownify %}
+
+
+{% block title %} TriTlas | المدن {% endblock %}
+{% block meta %}
+<meta name=”description” content=”تصفح المدن لتستكشف أفضل الأماكن المتاحة لقضاء وقت ممتع”>
+{% endblock %}
+{% block content %}
+        <!-- slider -->
+        
+        <section class="ads">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-lg-offset-3">
+
+                        <a href="/contact"><img class="img-responsive" src="{% static 'img/ad-728-90.png' %}"/></a>
+
+
+                        </div>
+                </div>
+            </div>
+        </section>
+        
+        
+       <section class="places-area">
+           <div class="container">
+            <div id="places-intro">
+                <div class"row">
+                    <div class="text-center">
+                        <h1>المدن</h1>
+                        
+                    </div>
+                </div>
+                <div class="row">
+                <div class="about-border justify-content-lg-center"></div>
+                </div>
+                <div class="places-boxs-area">
+                <div class="row">
+
+                    {% for cities in page_obj %}
+                    <div class="col-lg-4 col-md-6 col-sm-6 text-center box">
+                        <div class="places-box">
+                        <h3>{{cities.name}}</h3>
+                            <img class="img-responsive place-mini-img" src="{{cities.img.url}}" style="width:360px; height:270px"/>
+                            <div class="middle">
+                                <h5>الأماكن التي يمكن زيارتها : <span id="num-of-places">{{cities.num_of_places}}</span></h5>
+                                <form action="{{cities.id}}">
+                                <button class="btn btn-danger">أستكشف {{cities.name}}</button>
+                                    </form>
+                        </div>
+                    </div>
+                    </div>
+                    {% endfor %}
+
+
+
+
+                    
+                    </div>
+                    <div class="row text-center">
+                        <div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a class="btn btn-secondary" href="?page=1">&laquo; first</a>
+            <a class="btn btn-danger" href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a class="btn btn-primary" href="?page={{ page_obj.next_page_number }}">next</a>
+            <a class="btn btn-secondary" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+                    </div>
+                    <!--
+                    <div class="row">
+                        <div class="col-lg-offset-4 col-lg-4 text-center box">
+                        <div class="places-box">
+                        <h3>لا تعرف أين تذهب؟</h3>
+                            <img class="img-responsive place-mini-img" src="{% static 'img/idk.jpg' %}"/>
+                                    <div class="middle">
+                                       
+                            <form action="one-city.html">
+                                <button class="btn btn-danger">أجعلنا نختار مكان عشوائي لك</button> </button>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    -->
+                    
+                    </div>
+           </div>   
+               </div>
+        </section>   
+        <section class="community-banner">
+            <div class="container">
+            <div class="row">
+                <div class="comm-banner-full">
+                    <div class="center-box col-lg-12 text-center">
+                    <h1>أنشر تجربتك وتصفح تجارب الأخرين</h1>
+                        <h5> يمكنك مشاركة تجاربك وصورك في المجتمع الخاص بنا لتوصية الأماكن المفضلة لديك للأخرين أو لإيجاد مكان مناسب لك</h5>
+                        <form action="/community">
+                        <button class="btn btn-danger">أذهب إلى المجتمع</button>
+                            </form>
+                    </div>
+                </div>
+            </div>
+                </div>
+        </section>
+{% endblock %}

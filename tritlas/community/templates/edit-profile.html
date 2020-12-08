@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} TriTlas {% endblock %}
+{% block content %}
+        
+        <!-- slider -->
+
+        <section class="header-place">
+            <div class="container">
+                <div class="row text-center">
+                    <h1 style="color: white">تعديل الحساب الشخصي</h1>
+                </div>
+                <div class="row text-center">
+
+                </div>
+            </div>
+        </section>
+
+<section>
+    <div class="container">
+        <div class="row">
+    <form class="text-center" method="post" enctype="multipart/form-data"><br>
+        {% csrf_token %}
+        {{user_form.as_p}}
+        {{profile_form.as_p}}
+
+        {% if current_img.image %}
+        <img src="{{current_img.image.url}}" style="width: 200px;height: 200px;">
+        {% endif %}
+        <br>
+        <button class="btn btn-danger" type="submit">Save</button>
+    </form>
+            </div>
+    </div>
+</section>
+       
+      
+           
+   
+        
+        
+        
+        <style>
+            #id_tell_us_about_yourself{
+            width:100%;
+            }
+        </style>
+        
+        
+        
+        {% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load index %}
+{% load markdownify %}
+{% block title %} TriTlas | Not Found  {% endblock %}
+{% block content %}
+      <div class="container" style="height:100vh">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="error-template">
+                <h1>
+                    غير متواجد</h1>
+                <h2>
+                    404 Not Found</h2>
+
+                <div class="error-actions">
+                    <a href="/" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>
+                        الصفحة الرئيسية </a><a href="/contact" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-envelope"></span> تواصل معنا </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .error-template {padding: 40px 15px;text-align: center;}
+.error-actions {margin-top:15px;margin-bottom:15px;}
+.error-actions .btn { margin-right:10px; }
+</style>
+{% endblock %}

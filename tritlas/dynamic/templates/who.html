@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} TriTlas {% endblock %}
+{% block meta %}
+<meta name=”description” content=”أستكشف أروع الأماكن التي يمكنك زيارتها في مختلف المحافظات بكبسة زر لتسفيد من عطلتك بأكبر قدر ممكن”>
+{% endblock %}
+{% block content %}
+        <!-- slider -->
+        <section class="header-home" style="clip-path: circle(550px at center center);">
+            <div class="container">
+               <div class="row">
+                   <h1 class="text-center big-word-head">TriTlas</h1>
+                   <p class="text-center" style="color:white;font-size:40px">نساعدك على استكشاف الأماكن المتاحة للزيارة في مختلف المحافظات بجانب تصفح الرحلات المتاحة ومشاركة تجربتك من الأخرين</p>
+                </div>
+
+            </div>
+        </section>
+
+
+
+<section class="features1 cid-qyvcAqZyNq" id="features1-1" data-rv-view="764">
+
+
+
+
+    <div class="container">
+        <div class="container">
+            <div class="row text-center">
+                <h3 style="color: #622727;font-size: 50px;">ماذا نقدم لك</h3>
+            </div>
+                <div class="row">
+            <div class="col-lg-4">
+                <div class="card">
+                        <div class="card-img pb-3">
+                            <i class="fa fa-map-marker" style="font-size: 50px;padding-top: 10px;color: #1d9dd2;" media-simple="true"></i>
+                        </div>
+                        <div class="card-box">
+                            <h4 style="font-size: 30px;color: #2a626f;">
+                                استكشف الأماكن</h4>
+                            <p> أستكشف الأماكن المتاحة للزيارة في جميع المحافظات من خلال أطلس للمناطق بالصور والمعلومات عنها </p>
+                        </div>
+                    </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card">
+                        <div class="card-img pb-3">
+                    <i class="fa fa-users" style="font-size: 50px;padding-top: 10px;color: #1d9dd2;" media-simple="true"></i>
+                </div>
+                <div class="card-box">
+                    <h4 style="font-size: 30px;color: #2a626f;">
+                        المجتمع</h4>
+                    <p> أنضم للمجتمع الخاص بنا لتشارك تجربتك مع الأخرين لمكان قمت بزيارته أو تنصح مكان لأحد وتصفح تجارب الأخرين </p>
+                </div></div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card">
+                        <div class="card-img pb-3">
+                    <i class="fa fa-suitcase" style="font-size: 50px;padding-top: 10px;color: #1d9dd2;" media-simple="true"></i>
+                </div>
+                <div class="card-box">
+                    <h4 style="font-size: 30px;color: #2a626f;">
+                        الرحلات
+                    </h4>
+                    <p> استكشف الرحلات المتوفرة المعروضة من قبل شركات سياحية أو منظمي رحلات لقضاء وقت ممتع </p>
+                </div></div>
+            </div>
+</div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+
+
+
+
+
+
+        <section class="join-find-bar">
+            <div class="container">
+            <div class="row  text-center">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 comm-join align-self-center">
+                    <h3>أنضم للمجتمع الخاص بنا</h3>
+                    <h5>أنضم للمجتمع الخاص بنا وشارك صورك وتفاعل مع صور الأخرين لتتعرف على افضل الأماكن الجديدة</h5>
+                    <form action="/community    ">
+                    <button class="btn btn-danger">أنضم الآن</button>
+                        </form>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 find-jor">
+                    <h3>أضف رحلتك</h3>
+                    <h5>هل أنت منظم رحلات وتريد إضافة رحلتك؟ أضغط على الزر لمعلومات أكثر</h5>
+                    <form action="/trips/new/select">
+                        <button class="btn btn-danger">أضف رحلتك</button></form>
+                </div>
+            </div>
+                </div>
+        </section>
+{% endblock %}

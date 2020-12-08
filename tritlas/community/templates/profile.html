@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} {{user_profile.user}} {% endblock %}
+{% block content %}
+        
+        <!-- slider -->
+
+        <section class="header-place">
+            <div class="container">
+                <div class="row text-center" style="margin-top: 1%;">
+                    <img style="border-radius:50%;width: 100px;height: 100px" src="{% if user_profile.image %}{{user_profile.image.url}} {% endif %}">
+                    <h3 style="color: white">{{user_profile.user}}</h3>
+                </div>
+
+                {% if edit %}
+                <div class="row text-center">
+                    <form action="/community/edit-profile">
+                    <button class="btn btn-success">تعديل البيانات</button></form>
+                   
+                </div>
+
+                {% endif %}
+            </div>
+        </section>
+        <section class="profile-body">
+            <div class="container">
+               <div class="row text-center">
+                    <h1>الحساب الشخصي</h1>
+                   <h6>تاريخ الأنضمام: {{user_profile.joined_date}}</h6>
+                </div>
+                <div class="row text-center">
+                    {{user_profile.first_name}} {{user_profile.last_name}}
+                </div>
+                <div class="profile-info-box">
+                    <div class="row text-center">
+                        <p>{{user_profile.tell_us_about_yourself}}</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+<section class="text-center">
+    {% if  edit %}
+<p>
+  <button style="width: 60%;" class="btn btn-warning" type="button" data-toggle="collapse" data-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample">
+ رحلاتك التي في إنتظار التفعيل
+  </button>
+
+<div class="collapse" id="collapseExample3">
+  <div class="card-body">
+      <div class="container">
+    <div class="row">
+                        {% for all_trip_boost in user_trips %}
+        {% if not all_trip_boost.published %}
+                        <div class="col-lg-4 col-md-6  col-sm-12 text-center box">
+                        <div class="places-box box-trips">
+                        <h3>الوجهة : {{all_trip_boost.destination}}</h3>
+                            <h5>التاريخ : {{all_trip_boost.date}}</h5>
+                            <h5>مكان الإنطلاق : {{all_trip_boost.depart_location}}</h5>
+                            <h5>عدد الليالي : {{all_trip_boost.nights}}</h5>
+                            <h5><span id="trip-price-box">السعر : {{all_trip_boost.price}}</span></h5>
+                            <button class="btn btn-danger" disabled>في إنتظار التفعيل
+
+                                </button>
+
+                        </div>
+                    </div>
+        {% endif %}
+                        {% endfor %}
+
+                    </div></div>
+  </div>
+</div>
+
+{% endif %}
+
+
+
+<p>
+  <butto style="width: 60%;"n class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+ أعرض رحلات {{user_profile.user}}
+  </button>
+</p>
+<div class="collapse" id="collapseExample">
+  <div class="card-body">
+      <div class="container">
+    <div class="row">
+                        {% for all_trip_boost in user_trips %}
+        {% if not all_trip_boost.published %}
+
+        {% else %}
+                        <div class="col-lg-4 col-md-6  col-sm-12 text-center box">
+                        <div class="places-box box-trips">
+                        <h3>الوجهة : {{all_trip_boost.destination}}</h3>
+                            <h5>التاريخ : {{all_trip_boost.date}}</h5>
+                            <h5>مكان الإنطلاق : {{all_trip_boost.depart_location}}</h5>
+                            <h5>عدد الليالي : {{all_trip_boost.nights}}</h5>
+                            <h5><span id="trip-price-box">السعر : {{all_trip_boost.price}}</span></h5>
+                            <form action="/trips/{{all_trip_boost.id}}">
+                                {% if not all_trip_boost.active %}
+                            <button class="btn btn-danger" disabled >تم إغلاق الرحلة
+
+                                {% else %}
+                                <button class="btn btn-danger">أعرض التفاصيل
+                                {% endif %}
+                                </button>
+
+                            </form>
+
+                        </div>
+                    </div>
+        {% endif %}
+                        {% endfor %}
+
+    </div></div>
+  </div>
+</div>
+
+<p>
+  <button style="width: 60%;" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample">
+ أعرض منشورات {{user_profile.user}}
+  </button>
+</p>
+<div class="collapse" id="collapseExample1">
+  <div class="card-body">
+      <div class="container">
+    <div class="row">
+                    {% for all_posts in user_posts %}
+                        <div class="bb col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                            <div class="card" style="width:300px">
+                                <a href="/community/post/{{all_posts.id}}post/{{all_posts.id}}" class="no-underline comment-style">
+                                      <div class="card-image"><img class="img-responsive" src="{{all_posts.image.url}}" style="width:300px;height:225px"/></div>
+                                      <div class="card-text" style="height: 230px;">
+                                        <span class="date">{{all_posts.date}}</span>
+                                        <h1>
+                                           <a href="/community/profile/{{all_posts.user.id}}-user" class="no-underline comment-style" style="color:black"><font size="5px">{{all_posts.user}}</font></a>
+                                        </h1>
+                                        <p>{{all_posts.message}}</p>
+                                      </div>
+                                      <div class="card-stats">
+                                    <div class="stat border">
+                                          <div class="value">{{all_posts.comment_counter}}</div>
+                                          <div class="type">comments</div>
+                                        </div>
+                                        <div class="stat">
+                                    <a href="/community/post/{{all_posts.id}}" class="no-underline comment-style">Comments</a>
+                                              </div>
+
+
+                                      </div></a>
+                            </div>
+                        </div>
+                   {% endfor %}
+
+
+    </div>
+      </div>
+  </div>
+</div>
+
+</section>
+
+{% if view_msg %}
+    <script type="text/javascript">
+        function codeAddress() {
+            Swal.fire('Good job!','Submission successful, Our Team will review it and publish it as soon as possible, You can View your Trip status in your dashboard','success');
+        }
+        window.onload = codeAddress
+        </script>
+
+{% endif %}
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+{% endblock %}

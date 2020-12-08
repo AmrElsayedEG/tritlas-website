@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} TriTlas {% endblock %}
+{% block content %}
+        <!-- slider -->
+
+        <section class="header-home" style="clip-path: circle(550px at center center);">
+            <div class="container">
+               <div class="row">
+                   <h1 class="text-center big-word-head">أضف رحلتك</h1>
+                </div>
+                
+            </div>
+        </section>
+        <section class="add--trip-sec">
+            <div class="container">
+                <div class="row text-center">
+                    <h3>تنوية: بعد إرسال بيانات الرحلة سيقوم فريقنا بمراجعتها وإذا أستوفت <a data-toggle="modal" data-target="#exampleModal">الشروط</a> سيتم قبولها فوراً.</h3>
+                    <h4>إذا كنت تريد إضافة إعلان مميز برجاء <a href="/contact">التواصل معنا</a></h4>
+                </div>
+                <div class="row text-center">
+                    <form id="post_form" method="post" enctype="multipart/form-data">
+                                           {% csrf_token %}
+                        {{pForm.as_p}}
+
+                        {{ formset.management_form }}
+                        {% for form in formset %}
+                            {{ form }}
+                        {% endfor %}
+
+
+                        <input class="btn btn-danger" type="submit" name="submit" style="margin-bottom:10px" value="Add Your Trip Now" />
+
+                    </form>
+                     </div>
+
+
+<style>
+ * {box-sizing: border-box}
+#id_date::after{
+font-weight: bold;
+  color: navy;
+content : "Daaate";
+}
+/* Add padding to containers */
+.container-a {
+  padding: 16px;
+}
+
+/* Full-width input fields */
+input[type=text], input[type=number], textarea, select,input[type=file]{
+  width: 96%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+input[type=file]
+{
+color: #fff;
+background-color: #d9534f;
+border-color: #d43f3a;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Overwrite default styles of hr */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for the submit/register button */
+.registerbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.registerbtn:hover {
+  opacity:1;
+}
+
+/* Add a blue text color to links */
+a {
+  color: dodgerblue;
+}
+
+/* Set a grey background color and center the text of the "sign in" section */
+.signin {
+  background-color: #f1f1f1;
+  text-align: center;
+}
+</style>
+
+
+
+            </div>
+        </section>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">شروط قبول طلب إضافة رحلة</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+
+            <div class="col-lg-6 text-center">
+                <div class="row">
+                <span class="glyphicon glyphicon-ok" style="color:green"></span>
+                    </div>
+                <div class="row">
+                    تأكد من إضافة المعلومات بشكل صحيح
+                </div>
+            </div>
+            <div class="col-lg-6 text-center">
+               <div class="row">
+                <span class="glyphicon glyphicon-remove" style="color:red"></span>
+                    </div>
+                <div class="row">
+                    لا تضيف روابط خارجية في بيانات الرحلة
+                    <br>
+                    (متوفر فقط لأصحاب الباقة المميزة)
+                </div>
+            </div>
+            <div class="col-lg-6 text-center">
+               <div class="row">
+                <span class="glyphicon glyphicon-ok" style="color:green"></span>
+                    </div>
+                <div class="row">
+                    تأكد من إضافة ثلاث صور يتضمن مكان الرحلة او رحلة سابقة
+                </div>
+            </div>
+            <div class="col-lg-6 text-center">
+                <div class="row">
+                <span class="glyphicon glyphicon-remove" style="color:red"></span>
+                    </div>
+                <div class="row">
+                    لا تقوم بتكرار نشر نفس الرحلة أكثر من مرة واحدة خلال شهر
+                </div>
+            </div>
+            <div class="col-lg-6 text-center">
+               <div class="row">
+                <span class="glyphicon glyphicon-ok" style="color:green"></span>
+                    </div>
+                <div class="row">
+                    في خانة بيانات الحجز تأكد من كتابة الطرق الصحيحة للحجز سواء رقم هاتف أو وسيلة أخرى
+                </div>
+            </div>
+            <div class="col-lg-6 text-center">
+                <div class="row">
+                <span class="glyphicon glyphicon-remove" style="color:red"></span>
+                    </div>
+                <div class="row">
+                    لا تقوم بكتابة سعر أقل من السعر الحقيقي للرحلة
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal">غلق</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} TriTlas | Add Post{% endblock %}
+{% block content %}
+
+{% if user.is_authenticated %} <br> <br>
+<h1 class="text-center">أضف مشاركة</h1>
+        <section class="user-post text-center">
+
+
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+                    <label for="id_image">Upload Image</label>
+                    <div class="col-lg-offset-4 col-lg-11">
+                    <input class="btn btn-danger"  type="file" name="image" accept="image/*" required="" id="id_image">
+                    </div><br>
+                        <label for="id_message">Caption</label><br>
+                    <textarea name="message" cols="40" rows="10" maxlength="120" required="" id="id_message"></textarea>
+                </div>
+                <br>
+                <button class="btn btn-success" type="submit">Share Your Moment</button>
+
+            </form>
+
+        </section> <br> <br>
+{% endif %}
+        <style>
+            input, select, textarea {
+  width: 34%; /* Full width */
+  padding: 12px; /* Some padding */
+  border: 1px solid #ccc; /* Gray border */
+  border-radius: 4px; /* Rounded borders */
+  box-sizing: border-box; /* Make sure that padding and width stays in place */
+  margin-top: 6px; /* Add a top margin */
+  margin-bottom: 16px; /* Bottom margin */
+  resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+}
+
+/* Style the submit button with a specific background color etc */
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* When moving the mouse over the submit button, add a darker green color */
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+        </style>
+{% endblock %}

@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} TriTlas {% endblock %}
+{% block meta %}
+<meta name=”description” content=”شارك تجربتك وتصفح تجارب الأخرين في السفر”>
+{% endblock %}
+{% block content %}
+        
+        <!-- slider -->
+
+        <section class="header-place" style="clip-path: circle(614px at center center);">
+            <div class="container">
+                <div class="row text-center">
+                    {% if user.is_authenticated %}
+                    <h2 style="color:white">مرحباً بك {{user.username}}</h2>
+                    <a href="logout" class="btn btn-danger">تسجيل الخروج</a>
+                    <a href="new" class="btn btn-success" style="font-size: 20px;">أضف مشاركة</a>
+                    {% else %}
+                    <h2 style="color:white">أهلاً بك في مجتمعنا</h2>
+                    <a href="signup" class="btn btn-success" style="font-size: 20px;">إنشاء حساب</a>
+                    <a href="login" class="btn btn-info" style="font-size: 20px;">تسجيل الدخول</a>
+                    {% endif %}
+                    <!-- logout -->
+                    <!--
+
+-->
+                </div>
+            </div>
+        </section>
+        
+        <section class="ads">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-lg-offset-3">
+                        <a href="/contact"><img class="img-responsive" src="{% static 'img/ad-728-90.png' %}"/></a>
+                        </div>
+                </div>
+            </div>
+        </section>
+        
+       <section class="comm-posts">
+            <div class="container">
+                <div class="row">
+                    {% for all_posts in page_obj %}
+                        <div class="bb col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                            <div class="card">
+                                <a href="post/{{all_posts.id}}" class="no-underline comment-style">
+                                      <div class="card-image"><img class="img-responsive" src="{{all_posts.image.url}}" style="width:300px;height:225px"/></div>
+                                      <div class="card-text" style="height: 230px;">
+                                        <span class="date">{{all_posts.date}}</span>
+                                        <h1>
+                                           <a href="profile/{{all_posts.user.id}}-user"> <img style="border-radius:50%;width: 50px;height: 50px" class="img-responsive" src="{% if all_posts.user.image %}{{all_posts.user.image.url}}{% endif %}"></a>
+                                                                <a href="profile/{{all_posts.user.id}}-user" class="no-underline comment-style" style="color:black"><font size="5px">{{all_posts.user}}</font></a>
+                                        </h1>
+                                        <p>{{all_posts.message}}</p>
+                                      </div>
+                                      <div class="card-stats">
+                                    <div class="stat border">
+                                          <div class="value">{{all_posts.comment_counter}}</div>
+                                          <div class="type">comments</div>
+                                        </div>
+                                        <div class="stat">
+                                    <a href="post/{{all_posts.id}}" class="no-underline comment-style">Comments</a>
+                                              </div>
+
+
+                                      </div></a>
+                            </div>
+                        </div>
+                   {% endfor %}
+                   
+                    
+                </div>
+                <div class="row text-center">
+                        <div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a class="btn btn-secondary" href="?page=1">&laquo; first</a>
+            <a class="btn btn-danger" href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a class="btn btn-primary" href="?page={{ page_obj.next_page_number }}">next</a>
+            <a class="btn btn-secondary" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+                    </div>
+            </div>
+        </section>
+{% endblock %}

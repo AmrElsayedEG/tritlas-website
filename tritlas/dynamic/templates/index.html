@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} TriTlas {% endblock %}
+{% block meta %}
+<meta name=”description” content=”أستكشف أروع الأماكن التي يمكنك زيارتها في مختلف المحافظات بكبسة زر لتسفيد من عطلتك بأكبر قدر ممكن”>
+<meta property="og:image" content="{% static 'img/lo.png' %}" />
+{% endblock %}
+{% block content %}
+       
+        <!-- slider -->
+<section class="header-home-new">
+        <div class="container">
+            <div class="row top-buffer">
+
+            
+                <div class="col-lg-10 col-lg-offset-1">
+                  
+                    <h1 class="text-center big-word-head">مرحباً بك في TriTlas</h1>
+                       <p class="index-meta text-center">أبحث عن أفضل الأماكن للزيارة في المدن والرحلات</p>
+                        <div style="text-align: center">
+                        <a href="city">
+                            <button class="home-btn btn-main">تصفح المدن</button>
+                            <a href="who">
+                            <button class="home-btn">تعرف علينا</button>
+                        </a></div>
+                    </div>
+           
+            </div>
+            </div>
+    </div>
+        </section>
+{% endblock %}

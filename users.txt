@@ -1,0 +1,6 @@
+admin
+admin
+
+// heroku //
+tritlas-main-admin-user-amr-elsayed-24092793
+tritlas-main-admin-password-amr-elsayed-24092793

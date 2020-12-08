@@ -1,0 +1,186 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} TriTlas {% endblock %}
+{% block meta %}
+<meta name=”description” content=”أستكشف أروع الأماكن التي يمكنك زيارتها في مختلف المحافظات بكبسة زر لتسفيد من عطلتك بأكبر قدر ممكن”>
+{% endblock %}
+{% block content %}
+       
+        <!-- slider -->
+<section class="header-home-new">
+        <div class="container">
+            <div class="row top-buffer">
+
+                <div class="col-lg-10 col-lg-offset-1">
+                    <h1 class="text-center big-word-head">مرحباً بك في TriTlas</h1>
+                       <p class="index-meta text-center">أبحث عن أفضل الأماكن للزيارة في المدن والرحلات</p>
+                        <div style="text-align: center">
+                        <a href="/city">
+                            <button class="home-btn btn-main">تصفح المدن</button>
+                            <a href="/who">
+                            <button class="home-btn">تعرف علينا</button>
+                        </a>
+            </div>
+            </div>
+    </div>
+        </section>
+        
+       <section class="places-area">
+           <div class="container">
+            <div id="places-intro">
+                <div class"row">
+                    <div class="text-center">
+                        <h1>تواصل معنا</h1>
+                        
+                    </div>
+                </div>
+                <div class="row">
+                <!-- <div class="about-border justify-content-lg-center"></div> -->
+                </div>
+                
+                <div class="row" style="background-color: #89d6f7;clip-path: circle(550px at center center)">
+                    <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12 text-center">
+                        <h1>TriTlas</h1>
+                        <p>يمكنك التواصل معنا على الرقم التالي 01023352725</p>
+                        <p>أو من خلال البريد الألكتروني التالي contact@tritlas.com</p>
+                        <p>أو من خلال النموذج المرفق في الأسفل وسنتواصل معاك عما قريب</p>
+                    </div>
+                    <div class="col-lg-4 col-md-8 hidden-sm hidden-xs">
+                        <img src="{% static 'img/logo.png' %}" style="width:80%"/>
+                    </div>
+                    
+                </div>
+                 <!-- <div class="about-border justify-content-lg-center"></div> -->
+                <div class="text-center">
+                    <h1 style="color:red">{% if msg %} {{msg}} {% endif %}</h1>
+                    <h1 style="color:red">{% if msg %} {{msg_eng}} {% endif %}</h1>
+                    <!--
+                    <form method="post">
+                        {% csrf_token %}
+                    {{form.as_p}}
+                        <button class="btn btn-danger">إرسال</button>
+                        </form><br>
+                        -->
+                </div>
+           </div>
+               </div>
+                    <form method="post">
+     {% csrf_token %}
+  <div class="container-a">
+    <h1>ارسل رسالة لنا</h1>
+    <p>برجاء ملئ الفراغات لإرسال رسالة</p>
+    <hr>
+
+      <label for="name"><b>Name</b></label>
+    <input type="text" placeholder="Enter Your Name" name="name" id="name" required>
+
+    <label for="phone"><b>Phone</b></label>
+    <input type="text" placeholder="Enter Phone Number" name="phone" id="phone" required>
+
+    <label for="email"><b>E-mail</b></label>
+    <input type="email" placeholder="Enter E-mail Adress" name="email" id="email" required>
+
+      <p><label for="category">Category:</label> <select name="category" required="" id="category">
+  <option value="" selected="">---------</option>
+
+  <option value="طلب إعلان مميز">طلب إعلان مميز</option>
+
+  <option value="اخر">أخر</option>
+
+  <option value="أضف منتجع جديد">أضف منتجع جديد</option>
+
+</select></p>
+
+
+      <label for="message"><b>Message</b></label>
+      <textarea type="text" placeholder="Enter Your Message Information" name="message" id="message" required></textarea>
+
+
+      <hr>
+
+
+    <button type="submit" class="registerbtn">Send Message</button>
+  </div>
+
+</form>
+<style>
+ * {box-sizing: border-box}
+
+/* Add padding to containers */
+.container-a {
+  padding: 16px;
+}
+
+/* Full-width input fields */
+input[type=text], input[type=email], textarea {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Overwrite default styles of hr */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for the submit/register button */
+.registerbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.registerbtn:hover {
+  opacity:1;
+}
+
+/* Add a blue text color to links */
+a {
+  color: dodgerblue;
+}
+
+/* Set a grey background color and center the text of the "sign in" section */
+.signin {
+  background-color: #f1f1f1;
+  text-align: center;
+}
+</style>
+
+
+             
+
+        </section>  
+        <section class="join-find-bar">
+            <div class="container">
+            <div class="row  text-center">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 comm-join align-self-center">
+                    <h3>أنضم للمجتمع الخاص بنا</h3>
+                    <h5>أنضم للمجتمع الخاص بنا وشارك صورك وتفاعل مع صور الأخرين لتتعرف على افضل الأماكن الجديدة</h5>
+                    <form action="/community">
+                    <button class="btn btn-danger">أنضم الآن</button>
+                        </form>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 find-jor">
+                    <h3>أضف رحلتك</h3>
+                    <h5>هل أنت منظم رحلات وتريد إضافة رحلتك؟ أضغط على الزر لمعلومات أكثر</h5>
+                    <form action="/trips/new/select">
+                        <button class="btn btn-danger">أضف رحلتك</button></form>
+                </div>
+            </div>
+                </div>
+        </section>
+{% endblock %}

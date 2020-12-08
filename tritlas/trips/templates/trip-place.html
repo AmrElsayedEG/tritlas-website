@@ -1,0 +1,203 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} TriTlas {% endblock %}
+{% block content %}
+
+        <section class="header-one-place" style="clip-path: circle(614px at center center);">
+            <div class="container">
+                <div class="row">
+                 
+                        <h1 class="text-center big-word-head" style="font-size: 50px">الرحلات</h1>
+                    </div>
+                    <div class="row text-center">
+                        <a href="new/select" class="btn btn-danger">أضف رحلة</a>
+                    </div>
+
+
+            </div>
+        </section>
+        
+        <section class="ads">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-lg-offset-3">
+                        <a href=contact.html><img class="img-responsive" src="{% static 'img/ad-728-90.png' %}"/></a>
+                        </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="search">
+            <div class="container">
+                <div class="row text-center">
+                    <form method="get">
+                     <label for="place-box">أبحث بالمدينة</label>
+                          <select class="form-control" id="place-box" name="city" style="width:20%">
+                              {% for city_list in city_list %}
+                            <option value="{{city_list.id}}"">{{city_list.name}}</option>
+                                {% endfor %}
+                          </select>
+                        <button class="btn btn-success" style="width:20%">أبحث الآن</button>
+                        </form>
+                </div>
+            </div>
+        </section>
+        
+       <section class="places-area">
+           <div class="container">
+            <div id="places-intro">
+                {% if not city_name %}
+                    {% if all_trip_boost %}
+                <div class="adv-trips-pro">
+                    <div class="row text-center">
+                        <h3>الرحلات المميزة</h3>
+                        <div class="container">
+                            <div class="about-border justify-content-lg-center"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        {% for all_trip_boost in all_trip_boost %}
+                        <div class="col-lg-4 col-md-6  col-sm-12 text-center box">
+                        <div class="places-box box-trips">
+                        <h3>الوجهة : {{all_trip_boost.destination}}</h3>
+                            <h5>التاريخ : {{all_trip_boost.date}}</h5>
+                            <h5>مكان الإنطلاق : {{all_trip_boost.depart_location}}</h5>
+                            <h5>عدد الليالي : {{all_trip_boost.nights}}</h5>
+                            <h5><span id="trip-price-box">السعر : {{all_trip_boost.price}}</span></h5>
+                            <form action="{{all_trip_boost.id}}">
+                            <button class="btn btn-danger" {% if not all_trip_boost.active %} disabled {% endif %}>أعرض التفاصيل
+                                <i class="glyphicon glyphicon-star"></i>
+                                </button>
+
+                            </form>
+                                    
+                        </div>
+                    </div>
+                        {% endfor %}
+                        
+                    </div>
+                    </div>
+                </div>
+                        {% endif %}
+
+               {% else %}
+                    {% if trip_boost %}
+                <div class="adv-trips-pro">
+                    <div class="row">
+                        {% for trip_boost in trip_boost %}
+                        <div class="col-lg-4 col-md-6  col-sm-12 text-center box">
+                        <div class="places-box box-trips">
+                        <h3>الوجهة : {{trip_boost.destination}}</h3>
+                            <h5>التاريخ : {{trip_boost.date}}</h5>
+                            <h5>مكان الإنطلاق : {{trip_boost.depart_location}}</h5>
+                            <h5>عدد الليالي : {{trip_boost.nights}}</h5>
+                            <h5><span id="trip-price-box">السعر : {{trip_boost.price}}</span></h5>
+                            <form action="{{trip_boost.id}}">
+                            <button class="btn btn-danger" {% if not trip_boost.active %} disabled {% endif %}>أعرض التفاصيل
+                                <i class="glyphicon glyphicon-star"></i>
+                                </button>
+
+                            </form>
+
+                        </div>
+                    </div>
+                        {% endfor %}
+
+                    </div>
+                    </div>
+                </div>
+                        {% endif %}
+
+
+
+                        {% endif %}
+                <div class="places-boxs-area">
+
+                <div class="row">
+                    {% if trip_list %}
+                    <div class="container">
+                    <div class="row text-center">
+                        <h3>الرحلات</h3>
+                        <div class="container">
+                            <div class="about-border justify-content-lg-center"></div>
+                        </div>
+                    </div>
+                    </div>
+                    {% for trip_list in page_obj %}
+                    <div class="col-lg-4 col-md-6  col-sm-12 text-center box">
+                        <div class="places-box box-trips">
+                       <h3>الوجهة : {{trip_list.destination}}</h3>
+                            <h5>التاريخ : {{trip_list.date}}</h5>
+                            <h5>مكان الإنطلاق : {{trip_list.depart_location}}</h5>
+                            <h5>عدد الليالي : {{trip_list.nights}}</h5>
+                            <h5><span id="trip-price-box">السعر : {{trip_list.price}}</span></h5>
+                            <form action="{{trip_list.id}}">
+                            <button class="btn btn-danger" {% if not trip_list.active %} disabled {% endif %}>أعرض التفاصيل</button></form>
+                                    
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                    <!-- not found -->
+                    {% else %}
+                    
+                         <div class="col-lg-4 col-lg-offset-4 col-md-6  col-sm-12 text-center box">
+                        <div class="places-box box-trips">
+                        <h3></h3>
+                            <h5>.</h5>
+                            <h5>غير متوفر رحلات حالياً</h5>
+                            <h5>.</h5>
+
+                        </div>
+                   
+                    </div>
+                    {% endif %}
+                    <!-- end not found -->
+                    
+                    
+                    </div>
+                    <div class="row text-center">
+                        <div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a class="btn btn-secondary" href="?page=1">&laquo; first</a>
+            <a class="btn btn-danger" href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a class="btn btn-primary" href="?page={{ page_obj.next_page_number }}">next</a>
+            <a class="btn btn-secondary" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+                    </div>
+                    </div>
+
+           </div>   
+               </div>
+        </section>  
+        <section class="join-find-bar">
+            <div class="container">
+            <div class="row  text-center">
+               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 comm-join align-self-center">
+                    <h3>أنضم للمجتمع الخاص بنا</h3>
+                    <h5>أنضم للمجتمع الخاص بنا وشارك صورك وتفاعل مع صور الأخرين لتتعرف على افضل الأماكن الجديدة</h5>
+                    <form action="/community">
+                    <button class="btn btn-danger">أنضم الآن</button>
+                        </form>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 find-jor">
+                    <h3>أضف رحلتك</h3>
+                    <h5>هل أنت منظم رحلات وتريد إضافة رحلتك؟ أضغط على الزر لمعلومات أكثر</h5>
+                   <form action="new/select/">
+                        <button class="btn btn-danger">أضف رحلتك</button></form>
+                </div>
+                
+            </div>
+                </div>
+        </section>
+     {% endblock %}
