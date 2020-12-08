@@ -1,4 +1,4 @@
-## Asynchronous Group Chat [Real-Time] ![Django](https://img.shields.io/badge/Django-2.2.9-yellow.svg) ![Django](https://img.shields.io/badge/Django%20channels-3.0.2-green.svg)
+## TriTlas ![Django](https://img.shields.io/badge/Django-2.2.9-yellow.svg) ![Django](https://img.shields.io/badge/DRF-3.12.1-green.svg)
 
 
 ## Table of contents
@@ -7,24 +7,22 @@
 * [Run](#run)
 
 ## General info
-- This project provides you to create private real-time group chat, You can enter the group name and your name to join others.
-- No messages saved in the database so when you end your session the messages disappear forever.
-- You can see the number or online users in your group chat and also see when user join or leave your channel.
-- This project built using Django and Django Channels (WebSockets) so it's completely asynchronous application.
+- TriTlas is a website the shows you the best places to visit in Egypt, You can browse by city and then see the places inside the each city
+- Each place has information and images, You can see how many places in each city
+- You can make personal account to join the (Community) to post a post [image and text] and other users can comment to your post
+- Users can post their own trips in a separate page with images and information about their trip
+- Users who make ad for their trip can choose the free tier or the paid one, the paid one will let their trip appear more in the website [ community pages - City pages ]
+- There is an API that return the available places with all information about it
 
 ## Technologies
 Project is created with:
 * Django: 2.2
-* Django Channels: 3.0
-* Twisted: 20.3
+* Django Rest Framework: 3.12.1
 	
 ## Run
-To run this project, install it locally and make sure to install the twisted version that can run with your os with no problem
-Here is the Twisted v20.3.0 for windows, You will find the file in the repo
+To run this project, install it locally and make sure to install the requirements
 
 ```
 $ pip install requirements.txt
 $ python manage.py runserver
 ```
-
-After running the server make sure to run the redis server located inside [redis/redis-server.exe]
