@@ -143,15 +143,15 @@ GOOGLE_ANALYTICS = {
 }
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = '###'
-EMAIL_HOST_PASSWORD = '###' #past the key or password app here
+EMAIL_HOST_USER = 'tritlas.egypt@gmail.com'
+EMAIL_HOST_PASSWORD = 'acgdanmgghhgsdoa' #past the key or password app here
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'default from email'
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': '###',
-    'API_KEY': '###',
-    'API_SECRET': '###',
+    'CLOUD_NAME': 'hcpm1lyqk',
+    'API_KEY': '813268585591291',
+    'API_SECRET': 'nCr-pDHx2hq0_wBsSVneZ-wUX8c',
 }
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 django_heroku.settings(locals())
